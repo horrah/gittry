@@ -14,11 +14,12 @@ public class SendRequest {
 	public synchronized InputStream send(String json) {
 		HttpClient client = HttpClient.newHttpClient();
 	
+		// replace to your rpcuser and rpcpassowrd
 		String credentials = "user" + ":" + "t";
 		String auth = "Basic " + Base64.getEncoder().encodeToString(credentials.getBytes());
 		HttpRequest request = HttpRequest.newBuilder()
 	    .uri(URI.create("http://127.0.0.1:7777"))
-	    .POST(BodyPublishers.ofString(json)) //"{\"jsonrpc\":\"2.0\",\"id\":\"curltext\",\"method\":\"onchain_history\",\"params\":{\"show_addresses\":true}}"))
+	    .POST(BodyPublishers.ofString(json))
 	    .setHeader("Content-Type", "application/x-www-form-urlencoded")
 	    .setHeader("Authorization", auth)
 	    .build();
